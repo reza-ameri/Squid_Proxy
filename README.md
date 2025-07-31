@@ -32,11 +32,11 @@ sudo apt install apache2-utils
 htpasswd -c /etc/squid/password <username>
 🌍 Network Access Control
 
-acl localnet src 83.122.82.112
+acl localnet src your-ip-local
 http_access allow localhost
 http_access allow localnet authenticated
 http_access deny all
-Only the specified IP 83.122.82.112 is allowed to use the proxy.
+
 
 All other traffic is denied by default.
 
@@ -60,7 +60,7 @@ Place your config at /etc/squid/squid.conf.
 
 Create a user:
 
-htpasswd -c /etc/squid/password reza
+htpasswd -c /etc/squid/password user
 Start and enable Squid:
 
 sudo systemctl restart squid
@@ -70,7 +70,7 @@ Configure your client system to use your proxy IP and port (default: 3128).
 🔍 Testing
 You can test the proxy by running:
 
-curl -x http://your-proxy-ip:3128 -U reza http://example.com
+curl -x http://your-proxy-ip:3128 -U user http://example.com
 🛡️ Security Tips
 Use strong passwords.
 
